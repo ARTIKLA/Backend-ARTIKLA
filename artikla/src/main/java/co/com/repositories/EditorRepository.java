@@ -11,6 +11,5 @@ public interface EditorRepository extends CrudRepository<Editor, Long> {
 
 	public List<Editor> findAll();
 	public Editor findById(long id);
-	public Editor findByCorreoAndClave(String correo, String clave);
 	
 }
