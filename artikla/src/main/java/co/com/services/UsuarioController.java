@@ -18,8 +18,10 @@ public class UsuarioController {
 	UsuarioRepository usuarioRepository;
 	
 	@RequestMapping(value="/iniciarSesion", method= RequestMethod.POST) 
-	public Usuario obtenerEditorPorCorreoClave(@RequestBody Login login){
-		System.out.println(login.getNombreUsuario()+" "+login.getPasswordUsuario());
-		return usuarioRepository.findByCorreoAndClave(login.getNombreUsuario(),login.getPasswordUsuario()); 
+	public boolean obtenerEditorPorCorreoClave(@RequestBody Login login){
+		System.out.println(login.getCorreoUsuario()+" "+login.getPasswordUsuario());
+		Usuario user = usuarioRepository.findByCorreoAndClave(login.getCorreoUsuario(),login.getPasswordUsuario());
+		if(user != null) return true;
+		return false;
 	}
 }

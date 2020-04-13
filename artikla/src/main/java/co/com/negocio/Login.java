@@ -1,15 +1,15 @@
 package co.com.negocio;
 
 public class Login {
-	private String nombreUsuario;
+	private String correoUsuario;
 	private String passwordUsuario;
 	private boolean success;
 	
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getCorreoUsuario() {
+		return correoUsuario;
 	}
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setCorreoUsuario(String correoUsuario) {
+		this.correoUsuario = correoUsuario;
 	}
 	public String getPasswordUsuario() {
 		return passwordUsuario;
