@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.entities.Articulo;
+import co.com.entities.Autor;
+import co.com.entities.Categoria;
+import co.com.entities.Rol;
+import co.com.negocio.ArticuloDto;
 import co.com.repositories.ArticuloRepository;
 import co.com.repositories.AutorRepository;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class ArticuloController  {
@@ -41,6 +47,35 @@ public class ArticuloController  {
         @RequestMapping("/traerArticulos")
         public List<Articulo> buscarArticulos(){
             return articuloRepository.findAll();
+        }
+        
+        @RequestMapping(value="/agregarArticulo", method= RequestMethod.POST) 
+        public Articulo buscarArticulo(@RequestBody ArticuloDto articuloDto ){
+            
+            Rol rol = new Rol();
+            rol.setDescripcion("autor");
+            
+            Autor autor = new Autor();
+            autor.setId(1);
+            autor.setRol("autor");
+            autor.setNombre("autor1");
+            
+            Articulo articulo = new Articulo();
+            articulo.setTitulo(articuloDto.getDescripcion());
+            articulo.setDescripcion(articuloDto.getDescripcion());
+            articulo.setAutor(autor);
+            
+            Categoria categoria = new Categoria();
+            categoria.setDescripcion("Metodológicos");
+            categoria.setDescripcion("nada");
+            
+            List<Categoria> categorias = new ArrayList<>();
+            
+            categorias.add(categoria);
+            
+            articulo.setCategorias(categorias);
+            
+            return articuloRepository.save(articulo);
         }
 
 }
