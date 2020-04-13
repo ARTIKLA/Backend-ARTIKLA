@@ -14,6 +14,7 @@ public class Categoria {
 	private String titulo;
 	private String descripcion;
 	private int estado;
+        
 	@ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                 CascadeType.PERSIST,

@@ -25,7 +25,7 @@ public class Chat {
 	private long id;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "match_id", referencedColumnName = "id")
-	private Match match_id;
+	private MatchT match_id;
 	@OneToMany (fetch=FetchType.LAZY, mappedBy="chat")
 	private Set<Mensaje> mensajes= new HashSet<Mensaje>(0);
 	@Column(name = "fecha_inicio")
@@ -60,10 +60,10 @@ public class Chat {
 	public void setEstadoChat(int estadoChat) {
 		this.estadoChat = estadoChat;
 	}
-	public Match getMatch_id() {
+	public MatchT getMatch_id() {
 		return match_id;
 	}
-	public void setMatch_id(Match match_id) {
+	public void setMatch_id(MatchT match_id) {
 		this.match_id = match_id;
 	}
 	public Set<Mensaje> getMensajes() {

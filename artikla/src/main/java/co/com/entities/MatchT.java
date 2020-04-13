@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Match {
+public class MatchT {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

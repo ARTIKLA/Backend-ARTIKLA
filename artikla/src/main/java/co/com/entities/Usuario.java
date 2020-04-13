@@ -24,13 +24,6 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	private String nombre;
 	private String correo;
 	private String clave;
@@ -88,6 +81,13 @@ public class Usuario {
 	}
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 }
 
