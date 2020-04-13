@@ -19,7 +19,7 @@ public class UsuarioController {
 	
 	@RequestMapping(value="/iniciarSesion", method= RequestMethod.POST)  
 	public Usuario obtenerEditorPorCorreoClave(@RequestBody Login login){
-		System.out.println(login.getNombreUsuario()+" "+login.getPasswordUsuario());
-		return usuarioRepository.findByCorreoAndClave(login.getNombreUsuario(),login.getPasswordUsuario()); 
+		
+		return usuarioRepository.findByCorreoAndClave(login.getCorreoUsuario(), login.getPasswordUsuario()); 
 	} 
 }
