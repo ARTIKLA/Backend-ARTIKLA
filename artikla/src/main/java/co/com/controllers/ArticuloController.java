@@ -1,4 +1,4 @@
-package controllers;
+package co.com.controllers;
 
 
 import co.com.entities.Articulo;
