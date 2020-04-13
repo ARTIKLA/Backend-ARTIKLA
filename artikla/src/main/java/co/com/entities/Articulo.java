@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.Table;
 
 @Entity
 public class Articulo {
@@ -21,7 +22,11 @@ public class Articulo {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
+        
+        @Column(name= "titulo")
 	private String titulo;
+        
+        @Column(name = "descripcion")
 	private String descripcion;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -31,8 +36,10 @@ public class Articulo {
 	
 	@Column(name = "fecha_publicacion")
 	private Date fechaPublicacion;
+        
 	@ManyToMany
 	private List<Categoria> categorias;
+        
 	public long getId() {
 		return id;
 	}

@@ -17,11 +17,9 @@ public class UsuarioController {
 	@Autowired(required= true)
 	UsuarioRepository usuarioRepository;
 	
-	@RequestMapping(value="/iniciarSesion", method= RequestMethod.POST) 
-	public boolean obtenerEditorPorCorreoClave(@RequestBody Login login){
-		System.out.println(login.getCorreoUsuario()+" "+login.getPasswordUsuario());
-		Usuario user = usuarioRepository.findByCorreoAndClave(login.getCorreoUsuario(),login.getPasswordUsuario());
-		if(user != null) return true;
-		return false;
-	}
+	@RequestMapping(value="/iniciarSesion", method= RequestMethod.POST)  
+	public Usuario obtenerEditorPorCorreoClave(@RequestBody Login login){
+		
+		return usuarioRepository.findByCorreoAndClave(login.getCorreoUsuario(), login.getPasswordUsuario()); 
+	} 
 }
