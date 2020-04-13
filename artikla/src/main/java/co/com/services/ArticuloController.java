@@ -14,7 +14,7 @@ import co.com.repositories.ArticuloRepository;
 import co.com.repositories.AutorRepository;
 
 @RestController
-public class ArticuloController {
+public class ArticuloController  {
 
 	@Autowired(required=true)
 	ArticuloRepository  articuloRepository;
@@ -37,4 +37,10 @@ public class ArticuloController {
 	public Articulo consultarArticulo() {
 		return articuloRepository.findById(1);
 	}
+        
+        @RequestMapping("/traerArticulos")
+        public List<Articulo> buscarArticulos(){
+            return articuloRepository.findAll();
+        }
+
 }

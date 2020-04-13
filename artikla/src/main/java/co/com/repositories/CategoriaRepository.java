@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.com.entities.Categoria;
 import co.com.entities.Editor;
+import java.util.List;
 
 @Repository
 public interface CategoriaRepository extends CrudRepository<Categoria, Long> {
 
+        List<Categoria> findAllById(final Long id);
 	
 	
 }
