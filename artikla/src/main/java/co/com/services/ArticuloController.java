@@ -66,8 +66,9 @@ public class ArticuloController  {
             articulo.setAutor(autor);
             
             Categoria categoria = new Categoria();
-            categoria.setDescripcion("Metodológicos");
-            categoria.setDescripcion("nada");
+            categoria.setId(2);
+            categoria.setTitulo("Metodológicos");
+            categoria.setDescripcion("Con los artículos metodológicos se busca dar nuevas metodologías o modificar las que ya se dieron luego de un minucioso análisis de las mismas.");
             
             List<Categoria> categorias = new ArrayList<>();
             
