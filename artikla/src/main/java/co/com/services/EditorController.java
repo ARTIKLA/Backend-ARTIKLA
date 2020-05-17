@@ -1,16 +1,13 @@
 package co.com.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.entities.Editor;
 import co.com.repositories.EditorRepository;
 
-import java.util.List;	
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;	
-import org.springframework.stereotype.Service;	
 @RestController
 public class EditorController {
 	
@@ -23,16 +20,7 @@ public class EditorController {
 	}
 	
 	@RequestMapping("/crearEditor")
-	public String crearEditor(){
-		Editor editor = new Editor();
-		editor.setNombre("Oscar");
-		editor.setDescripcion("Descripcion");
-		editor.setCorreo("@mail.com");
-		editor.setClave("clave");
-		editor.setEstado(1);
-		editor.setRol("editor");
-		editor.setNombreRevista("Nombre Revista");
-		editor.setDescripcionRevista("Nombre Revista");
+	public String crearEditor( @RequestBody Editor editor){
 		editorRepository.save(editor);
 		return "usuario "+editor.getNombre()+ " guardado";
 	}

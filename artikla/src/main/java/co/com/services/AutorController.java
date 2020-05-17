@@ -1,6 +1,7 @@
 package co.com.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,15 +15,7 @@ public class AutorController {
 	AutorRepository autorRepository;
 	
 	@RequestMapping("/crearAutor")
-	public String crearAutor(){
-		Autor autor= new Autor();
-		autor.setNombre("Oscar");
-		autor.setDescripcion("Descripcion");
-		autor.setCorreo("@mail.com");
-		autor.setClave("clave");
-		autor.setEstado(1);
-		autor.setRol("autor");
-	//	autor.setArticulos(articulos);
+	public String crearAutor(@RequestBody Autor autor){
 		autorRepository.save(autor);
 		return "usuario "+autor.getNombre()+ " guardado";
 	}

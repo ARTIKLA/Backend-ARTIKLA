@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.negocio.Login;
+import co.com.entities.Autor;
 import co.com.entities.Usuario;
 import co.com.repositories.UsuarioRepository;
 
@@ -22,4 +23,5 @@ public class UsuarioController {
 		
 		return usuarioRepository.findByCorreoAndClave(login.getCorreoUsuario(), login.getPasswordUsuario()); 
 	} 
+	
 }
