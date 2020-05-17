@@ -1,4 +1,4 @@
-package controllers;
+package co.com.controllers;
 
 
 import co.com.entities.Articulo;
@@ -27,11 +27,6 @@ public class ArticuloController{
             
                 return articuloService.findAll();
         }
-      
-        @RequestMapping(value="/addArticulo", method= RequestMethod.PUT) 
-        public boolean buscarArticulo(@RequestBody int articulo ){
-            System.out.println(articulo);
-            return true;
-        }
+     
         
 }
