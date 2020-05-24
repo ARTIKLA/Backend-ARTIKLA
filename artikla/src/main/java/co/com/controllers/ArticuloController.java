@@ -3,30 +3,24 @@ package co.com.controllers;
 
 import co.com.entities.Articulo;
 import co.com.negocio.ArticuloDto;
+import co.com.repositories.ArticuloRepository;
 import co.com.services.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-@RestController
+@Component
 public class ArticuloController{
 
 	@Autowired(required=true)
-	iArticuloService articuloService;
+	ArticuloRepository articuloRepository;
         
-        @RequestMapping("/traerArticulos")
-        public List<Articulo> buscarArticulos(){
-            
-                return articuloService.findAll();
-        }
+    public List<Articulo> buscarArticulos(){
+    	return articuloRepository.findAll();
+    }
      
         
 }

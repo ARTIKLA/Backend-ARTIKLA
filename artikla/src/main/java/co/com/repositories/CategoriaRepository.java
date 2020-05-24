@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 public interface CategoriaRepository extends CrudRepository<Categoria, Long> {
 
-        List<Categoria> findAllById(final Long id);
-	
+        Categoria findAllById(final Long id);
+        List<Categoria> findAll();
+    	
 	
 }

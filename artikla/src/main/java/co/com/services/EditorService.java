@@ -9,7 +9,7 @@ import co.com.entities.Editor;
 import co.com.repositories.EditorRepository;
 
 @RestController
-public class EditorController {
+public class EditorService {
 	
 	@Autowired(required=true)
 	EditorRepository  editorRepository;
@@ -41,7 +41,7 @@ public class EditorController {
 				editor.setCorreo("@mail.com");
 				editor.setClave("clave");
 				editor.setEstado(1);
-				editor.setRol("editor1");
+				editor.setRol(2);
 				editor.setNombreRevista("Nombre Revista");
 				editor.setDescripcionRevista("Nombre Revista");
 				editorRepository.save(editor);		

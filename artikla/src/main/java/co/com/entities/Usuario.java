@@ -29,7 +29,7 @@ public class Usuario {
 	private String clave;
 	private String descripcion;
 	private int estado;
-	private String rol;
+	private int rol;
 	@ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                 CascadeType.PERSIST,
@@ -76,18 +76,17 @@ public class Usuario {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-	public String getRol() {
-		return rol;
-	}
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
-
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public int getRol() {
+		return rol;
+	}
+	public void setRol(int rol) {
+		this.rol = rol;
 	}
 }
 

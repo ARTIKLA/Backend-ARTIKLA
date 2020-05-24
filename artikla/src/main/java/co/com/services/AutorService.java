@@ -5,23 +5,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.controllers.AutorController;
 import co.com.entities.Autor;
-import co.com.repositories.AutorRepository;
 
 @RestController
-public class AutorController {
-
-	@Autowired(required=true)
-	AutorRepository autorRepository;
+public class AutorService {
+	
+	@Autowired
+	AutorController autorController;
+	
 	
 	@RequestMapping("/crearAutor")
 	public String crearAutor(@RequestBody Autor autor){
-		autorRepository.save(autor);
-		return "usuario "+autor.getNombre()+ " guardado";
+		String respuesta= autorController.insertarAutor(autor);
+		return respuesta;
 	}
 	@RequestMapping("/buscarAutor")
 	public Autor buscarPorId(){
-		return autorRepository.findById(15);
+		return autorController.buscarPorId(15);
 	}
 	
 	

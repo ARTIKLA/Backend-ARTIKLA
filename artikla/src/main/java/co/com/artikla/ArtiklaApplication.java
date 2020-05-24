@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@ComponentScan (basePackages="co.com.entities,co.com.repositories,co.com.services")
+@ComponentScan (basePackages="co.com.entities,co.com.repositories,co.com.services,co.com.controllers")
 @EntityScan(basePackages = {"co.com.entities"}) 
 @EnableJpaRepositories ("co.com.repositories")
 
