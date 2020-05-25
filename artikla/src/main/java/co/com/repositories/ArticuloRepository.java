@@ -8,12 +8,14 @@ import co.com.entities.Articulo;
 import co.com.negocio.ArticuloDto;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ArticuloRepository extends CrudRepository<Articulo,Long>{
 
 		Articulo findById(long id);
         List<Articulo> findAllById(final Long id);
+         @Override
         List<Articulo> findAll();
         void deleteById(Long id);
         //Interfaz creadda de iArticuloService
