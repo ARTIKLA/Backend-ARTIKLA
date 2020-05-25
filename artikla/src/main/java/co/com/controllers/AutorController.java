@@ -12,7 +12,7 @@ public class AutorController {
 	@Autowired
 	AutorRepository autorRepository;
 	
-	public String insertarAutor(Autor autor) {
+	public boolean insertarAutor(Autor autor) {
 		Autor autorInsert = new Autor();
 		autorInsert.setNombre(autor.getNombre());
 		autorInsert.setDescripcion(autor.getDescripcion());
@@ -20,8 +20,9 @@ public class AutorController {
 		autorInsert.setClave(autor.getClave());
 		autorInsert.setEstado(1);
 		autorInsert.setRol(autor.getRol());
-		autorRepository.save(autor);
-		return "holu";
+		Autor autorGuardado = autorRepository.save(autor);
+		if(autorGuardado.getId() > 0) return true;
+		return false;
 	}
 	
 	public Autor buscarPorId(int idUsuario){

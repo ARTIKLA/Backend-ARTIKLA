@@ -5,14 +5,18 @@
  */
 package co.com.negocio;
 
+import co.com.entities.Categoria;
+import java.util.List;
+
 /**
  *
  * @author Usuario
  */
 public class ArticuloDto {
-
+    private Long id;
     private String titulo;
     private String descripcion;
+    private List<Categoria> categorias;
 
     
     public String getTitulo() {
@@ -31,6 +35,24 @@ public class ArticuloDto {
         this.descripcion = descripcion;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(final List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+    
+
+    
 
     
     

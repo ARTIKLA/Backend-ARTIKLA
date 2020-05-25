@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.controllers.AutorController;
 import co.com.entities.Autor;
+import co.com.entities.RespWS;
+import co.com.entities.RespuestaWS;
 
 @RestController
 public class AutorService {
@@ -16,10 +18,19 @@ public class AutorService {
 	
 	
 	@RequestMapping("/crearAutor")
-	public String crearAutor(@RequestBody Autor autor){
-		String respuesta= autorController.insertarAutor(autor);
-		return respuesta;
+	public RespWS crearAutor(@RequestBody Autor autor){
+		try {
+			RespuestaWS.usuarioRegistrado.setSuccess(autorController.insertarAutor(autor));
+			
+			if(RespuestaWS.usuarioRegistrado.getSuccess())
+				return RespuestaWS.usuarioRegistrado;
+			else return RespuestaWS.errorGuardarUsuario;
+		} catch(Exception ex) {
+			return RespuestaWS.errorGuardarUsuario;
+		}
 	}
+	
+	
 	@RequestMapping("/buscarAutor")
 	public Autor buscarPorId(){
 		return autorController.buscarPorId(15);
