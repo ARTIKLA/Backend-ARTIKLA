@@ -3,11 +3,7 @@ package co.com.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import co.com.entities.Articulo;
 import co.com.entities.Categoria;
-import co.com.entities.Editor;
-import co.com.repositories.AutorRepository;
 import co.com.repositories.CategoriaRepository;
 
 @RestController
