@@ -72,32 +72,8 @@ public class ArticuloService  {
     }
     
     @RequestMapping(value="/agregarArticulo", method= RequestMethod.POST) 
-    public Articulo buscarArticulo(@RequestBody ArticuloDto articuloDto ){
+    public void buscarArticulo(@RequestBody Articulo articulo){
         
-        Rol rol = new Rol();
-        rol.setDescripcion("autor");
-        
-        Autor autor = new Autor();
-        autor.setId(1);
-        autor.setRol(1);
-        autor.setNombre("autor1");
-        
-        Articulo articulo = new Articulo();
-        articulo.setTitulo(articuloDto.getDescripcion());
-        articulo.setDescripcion(articuloDto.getDescripcion());
-        articulo.setAutor(autor);
-        
-        Categoria categoria = new Categoria();
-        categoria.setId(2);
-        categoria.setTitulo("Metodológicos");
-        categoria.setDescripcion("Con los artículos metodológicos se busca dar nuevas metodologías o modificar las que ya se dieron luego de un minucioso análisis de las mismas.");
-            
-            List<Categoria> categorias = new ArrayList<>();
-            
-            categorias.add(categoria);
-            
-            articulo.setCategorias(categorias);
-            
-            return articuloRepository.save(articulo);
-        }
+         articuloController.agregarArticulo(articulo);
+      }
 }

@@ -13,7 +13,7 @@ import co.com.entities.Usuario;
 import co.com.repositories.UsuarioRepository;
 
 @RestController
-public class UsuarioController {
+public class UsuarioService {
 
 	@Autowired(required= true)
 	UsuarioRepository usuarioRepository;
