@@ -30,5 +30,10 @@ public class ArticuloController{
     	articuloRepository.save(articuloDB);
     	return "jelou jaguaryu";
     }
+    
+    public String eliminarArticulo(Long id) {
+    	articuloRepository.deleteById(id);
+    	return "proceso";
+    }
         
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.controllers.ArticuloController;
@@ -47,6 +48,11 @@ public class ArticuloService  {
 	@RequestMapping("/traerArticulo")
 	public Articulo consultarArticulo() {
 		return articuloRepository.findById(1);
+	}
+	
+	@RequestMapping("/eliminarArticulo")
+	public String eliminarArticulo(@RequestParam Long id) {
+		return articuloController.eliminarArticulo(id);
 	}
 	
 	@RequestMapping("/editarArticulo")
