@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.entities.Categoria;
 import co.com.repositories.AutorRepository;
 import co.com.repositories.CategoriaRepository;
+import java.util.List;
 
 @RestController
 public class CategoriaController {
@@ -25,5 +26,11 @@ public class CategoriaController {
 		categoriaRepository.save(categoria);
 		return "categoria "+categoria.getTitulo()+ " guardada";
 	}
+        
+        @RequestMapping("/obtenerCategorias")
+        public List<Categoria> traerCategorias(){
+            return categoriaRepository.findAll();
+        }
+        
 	
 }

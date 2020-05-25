@@ -12,6 +12,8 @@ import java.util.List;
 public interface CategoriaRepository extends CrudRepository<Categoria, Long> {
 
         List<Categoria> findAllById(final Long id);
+        @Override
+        List<Categoria> findAll();
 	
 	
 }
