@@ -11,5 +11,4 @@ public interface AutorRepository extends CrudRepository<Autor, Long> {
 
 	public List<Autor> findAll();
 	public Autor findById(long id);
-	
 }

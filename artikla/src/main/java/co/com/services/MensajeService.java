@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.repositories.MensajeRepository;
 
 @RestController
-public class MensajeController {
+public class MensajeService {
 
 	@Autowired(required=true)
 	MensajeRepository mensajeRepository;
