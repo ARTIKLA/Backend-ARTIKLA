@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.controllers.ArticuloController;
 import co.com.entities.Articulo;
 import co.com.entities.Autor;
 import co.com.entities.Categoria;
@@ -26,10 +27,14 @@ public class ArticuloService  {
 
 	@Autowired(required=true)
 	ArticuloRepository  articuloRepository;
+	
 	@Autowired(required=true)
 	AutorRepository autorRepository;
 	
-
+	@Autowired(required=true)
+	ArticuloController articuloController;
+	
+	
 	@RequestMapping("/insertarArticulo")
 	public String crearArticulo(){
 		Articulo articulo= new Articulo();
@@ -42,6 +47,11 @@ public class ArticuloService  {
 	@RequestMapping("/traerArticulo")
 	public Articulo consultarArticulo() {
 		return articuloRepository.findById(1);
+	}
+	
+	@RequestMapping("/editarArticulo")
+	public String editarArticulo(@RequestBody Articulo articulo) {
+		return articuloController.modificarArticulo(articulo);
 	}
 	
     @RequestMapping("/traerArticulos")
