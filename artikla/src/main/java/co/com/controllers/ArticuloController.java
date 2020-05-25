@@ -21,6 +21,14 @@ public class ArticuloController{
     public List<Articulo> buscarArticulos(){
     	return articuloRepository.findAll();
     }
-     
+    public String modificarArticulo(Articulo articulo) {
+    	Articulo articuloDB = new Articulo();
+    	articuloDB=articuloRepository.findById(articulo.getId());
+    	articuloDB.setCategorias(articulo.getCategorias());
+    	articuloDB.setTitulo(articulo.getTitulo());
+    	articuloDB.setDescripcion(articulo.getDescripcion());
+    	articuloRepository.save(articuloDB);
+    	return "jelou jaguaryu";
+    }
         
 }

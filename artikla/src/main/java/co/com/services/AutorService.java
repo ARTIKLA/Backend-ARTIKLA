@@ -1,10 +1,10 @@
 package co.com.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import co.com.controllers.AutorController;
 import co.com.entities.Autor;
 import co.com.entities.RespWS;
@@ -32,10 +32,14 @@ public class AutorService {
 	
 	
 	@RequestMapping("/buscarAutor")
-	public Autor buscarPorId(){
-		return autorController.buscarPorId(15);
+	public Autor buscarPorId(@RequestParam int id){
+		return autorController.buscarPorId(id);
 	}
 	
-	
+
+	@RequestMapping("/posiblesMatchT")
+	public Iterable<Autor> consultarPosiblesMatch(){
+		return autorController.buscarAutores();
+	}        
 	
 }

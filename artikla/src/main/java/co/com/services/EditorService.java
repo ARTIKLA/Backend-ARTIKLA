@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.controllers.EditorController;
 import co.com.entities.Editor;
 import co.com.repositories.EditorRepository;
 
@@ -14,15 +15,18 @@ public class EditorService {
 	@Autowired(required=true)
 	EditorRepository  editorRepository;
 	
+	@Autowired
+	EditorController editorController;
+	
 	@RequestMapping("/obtenerEditores")
 	public Iterable<Editor> obtenerEditores(){
-		return  editorRepository.findAll();
+		return editorController.traerEditores();
 	}
 	
 	@RequestMapping("/crearEditor")
 	public String crearEditor( @RequestBody Editor editor){
-		editorRepository.save(editor);
-		return "usuario "+editor.getNombre()+ " guardado";
+		String resultado = editorController.insertarEditor(editor);
+		return resultado;
 	}
 
 	@RequestMapping("/buscarEditorPorId")

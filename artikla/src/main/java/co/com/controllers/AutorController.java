@@ -1,6 +1,7 @@
 package co.com.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 import org.springframework.stereotype.Component;
 import co.com.entities.Autor;
 import co.com.repositories.AutorRepository;
@@ -27,5 +28,9 @@ public class AutorController {
 	
 	public Autor buscarPorId(int idUsuario){
 		return autorRepository.findById(idUsuario);
+	}
+	
+	public List<Autor> buscarAutores(){
+		return autorRepository.findAll();
 	}
 }
