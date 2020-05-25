@@ -15,6 +15,7 @@ public interface ArticuloRepository extends CrudRepository<Articulo,Long>{
 
 		Articulo findById(long id);
         List<Articulo> findAllById(final Long id);
+         @Override
         List<Articulo> findAll();
         
         //Interfaz creadda de iArticuloService
