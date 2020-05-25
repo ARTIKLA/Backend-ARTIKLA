@@ -22,7 +22,7 @@ public class AutorController {
 		autorInsert.setEstado(1);
 		autorInsert.setRol(autor.getRol());
 		Autor autorGuardado = autorRepository.save(autor);
-		if(autorGuardado.getId() > 0) return true;
+		if(autorGuardado.getId() >= 0) return true;
 		return false;
 	}
 	
