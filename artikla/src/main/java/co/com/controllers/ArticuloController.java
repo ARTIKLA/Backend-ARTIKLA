@@ -2,10 +2,9 @@ package co.com.controllers;
 
 
 import co.com.entities.Articulo;
-import co.com.negocio.ArticuloDto;
+import co.com.entities.Autor;
+import co.com.entities.Rol;
 import co.com.repositories.ArticuloRepository;
-import co.com.services.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,14 +20,35 @@ public class ArticuloController{
     public List<Articulo> buscarArticulos(){
     	return articuloRepository.findAll();
     }
-    public String modificarArticulo(Articulo articulo) {
+    public void modificarArticulo(Articulo articulo) {
     	Articulo articuloDB = new Articulo();
     	articuloDB=articuloRepository.findById(articulo.getId());
     	articuloDB.setCategorias(articulo.getCategorias());
     	articuloDB.setTitulo(articulo.getTitulo());
     	articuloDB.setDescripcion(articulo.getDescripcion());
     	articuloRepository.save(articuloDB);
-    	return "jelou jaguaryu";
+    }
+    
+    public void agregarArticulo(final Articulo articulo){
+        
+        Rol rol = new Rol();
+        rol.setDescripcion("autor");
+        
+        Autor autor = new Autor();
+        autor.setId(1);
+        autor.setRol(1);
+        autor.setNombre("autor1");
+        
+        
+        articulo.setTitulo(articulo.getTitulo());
+        articulo.setDescripcion(articulo.getDescripcion());
+        articulo.setAutor(autor);
+        articulo.setFechaPublicacion(new Date());
+        
+        articulo.setCategorias(articulo.getCategorias());
+              
+        articuloRepository.save(articulo);
+        
     }
     
     public String eliminarArticulo(Long id) {

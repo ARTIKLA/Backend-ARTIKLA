@@ -37,17 +37,7 @@ public class ArticuloService  {
 	@Autowired(required=true)
 	ArticuloController articuloController;
 	
-	
-	@RequestMapping("/insertarArticulo")
-	public String crearArticulo(){
-		Articulo articulo= new Articulo();
-		articulo.setDescripcion("Descripcion categoría Cine");
-		articulo.setAutor(autorRepository.findById(15));
-		articuloRepository.save(articulo);
-		return "articulo "+articulo.getTitulo()+ " guardada";
-	}
-	
-	@RequestMapping("/traerArticulo")
+        @RequestMapping("/traerArticulo")
 	public Articulo consultarArticulo() {
 		return articuloRepository.findById(1);
 	}
@@ -58,8 +48,8 @@ public class ArticuloService  {
 	}
 	
 	@RequestMapping("/editarArticulo")
-	public String editarArticulo(@RequestBody Articulo articulo) {
-		return articuloController.modificarArticulo(articulo);
+	public void editarArticulo(@RequestBody Articulo articulo) {
+                 articuloController.modificarArticulo(articulo);
 	}
 	
     @RequestMapping("/traerArticulos")
@@ -69,7 +59,7 @@ public class ArticuloService  {
     }
     
     @RequestMapping(value="/agregarArticulo", method= RequestMethod.POST) 
-    public Articulo buscarArticulo(@RequestBody ArticuloDto articuloDto ){
+    public Articulo agregarArticulo(@RequestBody ArticuloDto articuloDto){
         
         Rol rol = new Rol();
         rol.setDescripcion("autor");

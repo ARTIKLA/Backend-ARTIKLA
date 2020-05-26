@@ -7,7 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity (name="autor")
-public class Autor extends Usuario{
+public class Autor extends Usuario {
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="autor")
 	private List<Articulo> articulos;
