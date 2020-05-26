@@ -2,13 +2,12 @@ package co.com.controllers;
 
 
 import co.com.entities.Articulo;
+import co.com.entities.ArticulosMatch;
 import co.com.entities.Autor;
-import co.com.entities.Categoria;
 import co.com.entities.Rol;
 import co.com.negocio.ArticuloDto;
+import co.com.negocio.RolEnum;
 import co.com.repositories.ArticuloRepository;
-import co.com.services.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,16 +32,15 @@ public class ArticuloController{
     	articuloRepository.save(articuloDB);
     }
     
-    
     public void agregarArticulo(final Articulo articulo){
         
         Rol rol = new Rol();
         rol.setDescripcion("autor");
         
         Autor autor = new Autor();
-        autor.setId(1);
-        autor.setRol(1);
-        autor.setNombre("autor1");
+        autor.setId(articulo.getAutor().getId());
+        autor.setRol(RolEnum.AUTOR.getId());
+        autor.setNombre(articulo.getAutor().getNombre());
         
         
         articulo.setTitulo(articulo.getTitulo());
@@ -60,5 +58,7 @@ public class ArticuloController{
     	articuloRepository.deleteById(id);
     	return true;
     }
-        
+       
+  
+   
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import co.com.entities.Autor;
 import co.com.entities.Editor;
 import co.com.repositories.EditorRepository;
+import java.util.List;
 
 @Component
 public class EditorController {
@@ -29,7 +30,7 @@ public class EditorController {
 		if(editorGuardado.getId() >= 0) return true;
 		return false;
 	}
-	public Iterable<Editor> traerEditores(){
+	public List<Editor> traerEditores(){
 		return  editorRepository.findAll();
 	}
 	
