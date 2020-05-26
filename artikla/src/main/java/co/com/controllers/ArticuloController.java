@@ -2,6 +2,7 @@ package co.com.controllers;
 
 
 import co.com.entities.Articulo;
+import co.com.entities.ArticulosMatch;
 import co.com.entities.Autor;
 import co.com.entities.Rol;
 import co.com.negocio.ArticuloDto;
@@ -58,15 +59,6 @@ public class ArticuloController{
     	return "proceso";
     }
        
-    public List<Articulo> buscarArticulosInicio() {
-    	List<Articulo> articulosObj;
-    	articulosObj = articuloRepository.findAll();
-    	
-    	//int cantArticulos = count(articulosObj);
-    	//for (int i = 0; i < articulosObj.length; i++) {
-			
-		//}
-    	return articulosObj;
-    }
+  
    
 }

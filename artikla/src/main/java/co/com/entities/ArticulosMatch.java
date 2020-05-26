@@ -13,17 +13,22 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 public class ArticulosMatch {
 
-	private long id;
-
-	private String titulo;
-
-	private String descripcion;
-
-	private Autor autor; 
-
-	private Date fechaPublicacion;
+	private Articulo articulo;
+	private Autor autor;
+	public Articulo getArticulo() {
+		return articulo;
+	}
+	public void setArticulo(Articulo articulo) {
+		this.articulo = articulo;
+	}
+	public Autor getAutor() {
+		return autor;
+	}
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	} 
 	
-	private List<Categoria> categorias;
+
 	
 
 }
