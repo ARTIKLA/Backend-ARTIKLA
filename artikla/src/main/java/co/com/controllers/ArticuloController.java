@@ -56,14 +56,15 @@ public class ArticuloController{
     	return "proceso";
     }
        
-    public boolean buscarArticulosInicio() {
+    public List<Articulo> buscarArticulosInicio() {
     	List<Articulo> articulosObj;
     	articulosObj = articuloRepository.findAll();
+    	
     	//int cantArticulos = count(articulosObj);
     	//for (int i = 0; i < articulosObj.length; i++) {
 			
 		//}
-    	return false;
+    	return articulosObj;
     }
    
 }

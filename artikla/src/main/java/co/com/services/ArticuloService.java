@@ -1,7 +1,6 @@
 package co.com.services;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
  
@@ -54,7 +53,7 @@ public class ArticuloService  {
 	
     @RequestMapping("/traerArticulos")
     public List<Articulo> buscarArticulos(){
-        return articuloController.buscarArticulos();
+        return articuloController.buscarArticulosInicio();
     	//return articuloController.buscarArticulosInicio();
     }
     
