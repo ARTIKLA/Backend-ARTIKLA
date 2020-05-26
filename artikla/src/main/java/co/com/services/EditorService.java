@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.controllers.EditorController;
 import co.com.entities.Editor;
+import co.com.entities.RespWS;
+import co.com.entities.RespuestaWS;
 import co.com.repositories.EditorRepository;
 
 @RestController
@@ -24,9 +26,16 @@ public class EditorService {
 	}
 	
 	@RequestMapping("/crearEditor")
-	public String crearEditor( @RequestBody Editor editor){
-		String resultado = editorController.insertarEditor(editor);
-		return resultado;
+	public RespWS crearEditor( @RequestBody Editor editor){
+		try {
+			RespuestaWS.usuarioRegistrado.setSuccess(editorController.insertarEditor(editor));
+			
+			if(RespuestaWS.usuarioRegistrado.getSuccess())
+				return RespuestaWS.usuarioRegistrado;
+			else return RespuestaWS.errorGuardarUsuario;
+		} catch(Exception ex) {
+			return RespuestaWS.errorGuardarUsuario;
+		}
 	}
 
 	@RequestMapping("/buscarEditorPorId")

@@ -19,6 +19,8 @@ import co.com.controllers.ArticuloController;
 import co.com.entities.Articulo;
 import co.com.entities.Autor;
 import co.com.entities.Categoria;
+import co.com.entities.RespWS;
+import co.com.entities.RespuestaWS;
 import co.com.entities.Rol;
 import co.com.negocio.ArticuloDto;
 import co.com.repositories.ArticuloRepository;
@@ -43,8 +45,16 @@ public class ArticuloService  {
 	}
 	
 	@RequestMapping("/eliminarArticulo")
-	public String eliminarArticulo(@RequestParam Long id) {
-		return articuloController.eliminarArticulo(id);
+	public RespWS eliminarArticulo(@RequestBody Long id) {
+		try {
+			RespuestaWS.articuloEliminado.setSuccess(articuloController.eliminarArticulo(id));
+			
+			if(RespuestaWS.articuloEliminado.getSuccess())
+				return RespuestaWS.articuloEliminado;
+			else return RespuestaWS.errorEliminarArticulo;
+		} catch(Exception ex) {
+			return RespuestaWS.errorEliminarArticulo;
+		}
 	}
 	
 	@RequestMapping("/editarArticulo")

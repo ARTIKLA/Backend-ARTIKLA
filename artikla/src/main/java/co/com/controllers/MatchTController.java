@@ -14,9 +14,8 @@ public class MatchTController {
 	MatchTRepository matchtRepository;
 	
 	public String insertarEditor(MatchT matchInsert) {
-		Date ahora = new Date();
 		MatchT matchT = new MatchT();
-		matchT.setFechaSolicitud(ahora);
+		matchT.setFechaSolicitud(new Date());
 		matchT.setEstado(1);
 		matchT.setId_articulo_match(matchInsert.getId_articulo_match());
 		matchT.setId_autor(matchInsert.getId_autor());
