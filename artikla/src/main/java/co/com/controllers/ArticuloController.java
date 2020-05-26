@@ -2,9 +2,6 @@ package co.com.controllers;
 
 
 import co.com.entities.Articulo;
-import co.com.entities.Autor;
-import co.com.entities.Categoria;
-import co.com.entities.Rol;
 import co.com.negocio.ArticuloDto;
 import co.com.repositories.ArticuloRepository;
 import co.com.services.*;
@@ -34,31 +31,19 @@ public class ArticuloController{
     	return "jelou jaguaryu";
     }
     
-    
-    public void agregarArticulo(final Articulo articulo){
-        
-        Rol rol = new Rol();
-        rol.setDescripcion("autor");
-        
-        Autor autor = new Autor();
-        autor.setId(1);
-        autor.setRol(1);
-        autor.setNombre("autor1");
-        
-        
-        articulo.setTitulo(articulo.getTitulo());
-        articulo.setDescripcion(articulo.getDescripcion());
-        articulo.setAutor(autor);
-        
-        articulo.setCategorias(articulo.getCategorias());
-              
-        articuloRepository.save(articulo);
-        
-    }
-    
     public String eliminarArticulo(Long id) {
     	articuloRepository.deleteById(id);
     	return "proceso";
     }
-        
+       
+    public boolean buscarArticulosInicio() {
+    	List<Articulo> articulosObj;
+    	articulosObj = articuloRepository.findAll();
+    	//int cantArticulos = count(articulosObj);
+    	//for (int i = 0; i < articulosObj.length; i++) {
+			
+		//}
+    	return false;
+    }
+   
 }
