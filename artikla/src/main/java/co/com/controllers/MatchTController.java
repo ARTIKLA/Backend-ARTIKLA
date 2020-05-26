@@ -2,6 +2,8 @@ package co.com.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,11 +44,12 @@ public class MatchTController {
 	    	Autor autor = new Autor();
 	    	List<Articulo> articulosObj;
 	    	articulosObj = articuloRepository.findAll();
-	    	int countA = articulosObj.size();
-	    	List<ArticulosMatch> articulosAndAutor = null;
+	    	List<ArticulosMatch> articulosAndAutor = new ArrayList<>();
 	    	ArticulosMatch articuloAndAutor = new ArticulosMatch();
+	    	Articulo articulo1 = new Articulo();
 		    for (Articulo ArticuloObj : articulosObj) {
-		    	autor = autorRepository.findById(ArticuloObj.getAutor().getId());
+		    	articulo1 = articuloRepository.findById(ArticuloObj.getId());
+		    	autor = autorRepository.findById(articulo1.getAutor().getId());
 		    	articuloAndAutor.setArticulo(ArticuloObj);
 		    	articuloAndAutor.setAutor(autor);
 		    	articulosAndAutor.add(articuloAndAutor);
