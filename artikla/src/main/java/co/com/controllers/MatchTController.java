@@ -28,7 +28,7 @@ public class MatchTController {
 	AutorRepository autorRepository;
 	
 	
-	public String insertarEditor(MatchT matchInsert) {
+	public String solicitarMatch(MatchT matchInsert) {
 		MatchT matchT = new MatchT();
 		matchT.setFechaSolicitud(new Date());
 		matchT.setEstado(1);
@@ -55,5 +55,24 @@ public class MatchTController {
 			}
 	    	return articulosAndAutor;
 	    }
+	  
+	  public List<Autor> obtenerPosiblesMatchAutores(Long idEditor) {
+		  List<Autor> autoresMatch = new ArrayList<Autor>();
+		  
+		  for(Autor autor : autorRepository.findAll()) {
+			  List<Articulo> articulos = autor.getArticulos();
+			  autor.setArticulos(new ArrayList<Articulo>());
+			  if(!articulos.isEmpty()) {
+				  for(Articulo articulo : articulos) {
+					  if(matchtRepository.findByIdArticuloAndIdEditor(articulo.getId(), idEditor) == null) {
+						  autor.getArticulos().add(articulo);
+					  }
+				  }
+				  autoresMatch.add(autor);
+			  }
+		  }
+		  
+		  return autoresMatch;
+	  }
 	
 }

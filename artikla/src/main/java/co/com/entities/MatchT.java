@@ -17,11 +17,11 @@ public class MatchT {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private long id_autor;
-	private long id_editor;
+	private long idEditor;
 	private int estado;
 	private Date fechaSolicitud;
 	private Date fechaAceptacion;
-	private long id_articulo_match;
+	private long idArticulo;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "chat_id", referencedColumnName = "id")
 	private Chat chat_id;
@@ -57,10 +57,10 @@ public class MatchT {
 		this.id_autor = id_autor;
 	}
 	public long getId_editor() {
-		return id_editor;
+		return idEditor;
 	}
 	public void setId_editor(long id_editor) {
-		this.id_editor = id_editor;
+		this.idEditor = id_editor;
 	}
 	public int getEstado() {
 		return estado;
@@ -69,10 +69,10 @@ public class MatchT {
 		this.estado = estado;
 	}
 	public long getId_articulo_match() {
-		return id_articulo_match;
+		return idArticulo;
 	}
 	public void setId_articulo_match(long id_articulo_match) {
-		this.id_articulo_match = id_articulo_match;
+		this.idArticulo = id_articulo_match;
 	}
 
 	

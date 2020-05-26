@@ -37,6 +37,8 @@ public class AutorController {
 	public List<Autor> buscarAutores(){
 		return autorRepository.findAll();
 	}
+	
+	
 	public List<Articulo> traerArticulosXAutor(Long id){
 		Optional<Autor> autor; 
 		List<Articulo> articulos;

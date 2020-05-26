@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.controllers.MatchTController;
 import co.com.entities.Articulo;
 import co.com.entities.ArticulosMatch;
+import co.com.entities.Autor;
 import co.com.entities.MatchT;
 @RestController
 public class MatchTService {
@@ -20,7 +21,7 @@ public class MatchTService {
 	
 	@RequestMapping("/generarMatch")
 	public String crearMatch( @RequestBody MatchT matchInfo){
-		String resultado = matchtController.insertarEditor(matchInfo);
+		String resultado = matchtController.solicitarMatch(matchInfo);
 		return resultado;
 	}
 	
@@ -28,6 +29,13 @@ public class MatchTService {
     @RequestMapping("/traerArticulos")
     public List<ArticulosMatch> buscarArticulos(){
         return matchtController.buscarArticulosInicio();
+    	//return articuloController.buscarArticulosInicio();
+    }
+    
+    
+    @RequestMapping("/obtenerPosiblesMatchAutores")
+    public List<Autor> obtenerPosiblesMatchAutores(@RequestBody Long idEditor){
+        return matchtController.obtenerPosiblesMatchAutores(idEditor);
     	//return articuloController.buscarArticulosInicio();
     }
 	
