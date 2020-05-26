@@ -61,8 +61,7 @@ public class ArticuloService  {
     }
     
     @RequestMapping(value="/agregarArticulo", method= RequestMethod.POST) 
-    public Articulo agregarArticulo(@RequestBody ArticuloDto articuloDto){
-        
+  
     public void agregarArticulo(@RequestBody Articulo articulo){
         
              articuloController.agregarArticulo(articulo);
