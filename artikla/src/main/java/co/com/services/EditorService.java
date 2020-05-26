@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.controllers.EditorController;
 import co.com.entities.Editor;
 import co.com.repositories.EditorRepository;
+import java.util.List;
 
 @RestController
 public class EditorService {
@@ -19,8 +20,10 @@ public class EditorService {
 	EditorController editorController;
 	
 	@RequestMapping("/obtenerEditores")
-	public Iterable<Editor> obtenerEditores(){
-		return editorController.traerEditores();
+	public List<Editor> obtenerEditores(){
+            List<Editor> editor = editorController.traerEditores();
+            
+                return editor;
 	}
 	
 	@RequestMapping("/crearEditor")

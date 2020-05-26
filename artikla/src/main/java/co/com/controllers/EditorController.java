@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import co.com.entities.Editor;
 import co.com.repositories.EditorRepository;
+import java.util.List;
 
 @Component
 public class EditorController {
@@ -26,7 +27,7 @@ public class EditorController {
 		editorRepository.save(editor);
 		return "holu";
 	}
-	public Iterable<Editor> traerEditores(){
+	public List<Editor> traerEditores(){
 		return  editorRepository.findAll();
 	}
 	

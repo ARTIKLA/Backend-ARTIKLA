@@ -53,7 +53,11 @@ public class ArticuloService  {
 	
     @RequestMapping("/traerArticulos")
     public List<Articulo> buscarArticulos(){
-        return articuloController.buscarArticulosInicio();
+     
+        List<Articulo> articulo = articuloController.buscarArticulosInicio();
+        
+        
+        return articulo;
     	//return articuloController.buscarArticulosInicio();
     }
     
