@@ -52,4 +52,16 @@ public class AutorController {
 		}
 		return  articulos ;
 	}
+	
+	public boolean modificarAutor(Autor autor) {
+		Autor autorDB = new Autor();
+		autorDB = autorRepository.findById(autor.getId());
+		autorDB.setClave(autor.getClave());
+		autorDB.setDescripcion(autor.getDescripcion());
+		autorDB.setNombre(autor.getNombre());
+		autorDB.setIntereses(autor.getIntereses());
+		Autor autorResp = autorRepository.save(autorDB);
+		if(autorResp.getId() >= 0) return true;
+		return false; 
+	}
 }

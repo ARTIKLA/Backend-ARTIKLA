@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.controllers.CorreoController;
 import co.com.controllers.MatchTController;
 import co.com.entities.Articulo;
 import co.com.entities.ArticulosMatch;
@@ -17,6 +18,9 @@ public class MatchTService {
 	
 	@Autowired
 	MatchTController matchtController;
+	
+	@Autowired
+	CorreoController correoController;
 	
 	
 	@RequestMapping("/generarMatch")
@@ -39,4 +43,9 @@ public class MatchTService {
     	//return articuloController.buscarArticulosInicio();
     }
 	
+    @RequestMapping("/crearRelacionMatch")
+    public void enviarCorreo(@RequestBody long idMatch){
+    	matchtController.crearMatchSuccess(idMatch);
+    	//return articuloController.buscarArticulosInicio();
+    }
 }

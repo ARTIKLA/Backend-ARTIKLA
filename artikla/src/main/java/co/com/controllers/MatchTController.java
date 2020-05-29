@@ -13,6 +13,7 @@ import co.com.entities.Autor;
 import co.com.entities.MatchT;
 import co.com.repositories.ArticuloRepository;
 import co.com.repositories.AutorRepository;
+import co.com.repositories.EditorRepository;
 import co.com.repositories.MatchTRepository;
 
 @Component
@@ -26,8 +27,14 @@ public class MatchTController {
 	
 	@Autowired
 	AutorRepository autorRepository;
+
+	@Autowired
+	EditorRepository editorRepository;
 	
-	
+	@Autowired
+	CorreoController correoController;
+
+
 	public String solicitarMatch(MatchT matchInsert) {
 		MatchT matchT = new MatchT();
 		matchT.setFechaSolicitud(new Date());
@@ -74,5 +81,18 @@ public class MatchTController {
 		  
 		  return autoresMatch;
 	  }
-	
+	  
+	  public void crearMatchSuccess(long idMatch) {
+		  MatchT matchDB = new MatchT();
+		  matchDB =matchtRepository.findById(idMatch);
+		  matchDB.setEstado(3);
+		  matchDB.setFechaAceptacion(new Date());
+		  matchtRepository.save(matchDB);
+		  String correoAutor = autorRepository.findById(matchDB.getId_autor()).getCorreo();
+		  String correoEditor= editorRepository.findById(matchDB.getId_editor()).getCorreo();
+		  String nombreAutor = autorRepository.findById(matchDB.getId_autor()).getNombre();
+		  String nombreEditor= editorRepository.findById(matchDB.getId_editor()).getNombre();
+		  correoController.sendEmail(correoAutor,nombreAutor);
+		  correoController.sendEmail(correoEditor,nombreEditor);
+	  }
 }

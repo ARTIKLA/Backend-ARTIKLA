@@ -33,5 +33,16 @@ public class EditorController {
 	public List<Editor> traerEditores(){
 		return  editorRepository.findAll();
 	}
-	
+	public boolean modificarEditor(Editor editor) {
+		Editor editorDB = new Editor();
+		editorDB = editorRepository.findById(editor.getId());
+		editorDB.setClave(editor.getClave());
+		editorDB.setNombre(editor.getNombre());
+		editorDB.setDescripcion(editor.getDescripcion());
+		editorDB.setNombreRevista(editor.getNombreRevista());
+		editorDB.setDescripcionRevista(editor.getDescripcionRevista());
+		Editor editorModificado= editorRepository.save(editorDB);
+		if(editorModificado.getId() >= 0) return true;
+		return false;
+	}
 }

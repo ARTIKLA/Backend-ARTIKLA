@@ -51,5 +51,9 @@ public class AutorService {
 	public List<Articulo> obtenerArticulosAutor(@RequestBody Long id){
 		return autorController.traerArticulosXAutor(id);
 	}
-	
+	@RequestMapping("/editarAutor")
+	public boolean modificarAutor(@RequestBody Autor autor) {
+		boolean respuesta = autorController.modificarAutor(autor);
+		return respuesta;
+	}
 }

@@ -14,25 +14,24 @@ import java.util.List;
 
 @RestController
 public class EditorService {
-	
+
 	@Autowired(required=true)
 	EditorRepository  editorRepository;
-	
+
 	@Autowired
 	EditorController editorController;
-	
+
 	@RequestMapping("/obtenerEditores")
 	public List<Editor> obtenerEditores(){
-            List<Editor> editor = editorController.traerEditores();
-            
-                return editor;
+		List<Editor> editor = editorController.traerEditores();
+		return editor;
 	}
-	
+
 	@RequestMapping("/crearEditor")
 	public RespWS crearEditor( @RequestBody Editor editor){
 		try {
 			RespuestaWS.usuarioRegistrado.setSuccess(editorController.insertarEditor(editor));
-			
+
 			if(RespuestaWS.usuarioRegistrado.getSuccess())
 				return RespuestaWS.usuarioRegistrado;
 			else return RespuestaWS.errorGuardarUsuario;
@@ -45,26 +44,11 @@ public class EditorService {
 	public Editor obtenerEditorPorId(){
 		return editorRepository.findById(1); 
 	}
-	
+
 	@RequestMapping("/editarEditor")
-	public int actualizarEditor(){
-			long num = 1;
-			//customerUpdated.getId();		
-		//	if (editorRepository.findById(num).isPresent()) {			
-				Editor editor = new Editor();
-				editor.setNombre("Oscar");
-				editor.setDescripcion("Descripcion");
-				editor.setCorreo("@mail.com");
-				editor.setClave("clave");
-				editor.setEstado(1);
-				editor.setRol(2);
-				editor.setNombreRevista("Nombre Revista");
-				editor.setDescripcionRevista("Nombre Revista");
-				editorRepository.save(editor);		
-				return 1;		
-		//	}else {
-			//	return 0 ;
-		//	}
+	public boolean actualizarEditor(@RequestBody Editor editor){
+		boolean resultado = editorController.modificarEditor(editor);
+		return resultado;
 	}
-	
+
 }
