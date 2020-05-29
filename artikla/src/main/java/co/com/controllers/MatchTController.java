@@ -11,13 +11,22 @@ import co.com.entities.Articulo;
 import co.com.entities.ArticulosMatch;
 import co.com.entities.Autor;
 import co.com.entities.MatchT;
+import co.com.entities.Usuario;
 import co.com.repositories.ArticuloRepository;
 import co.com.repositories.AutorRepository;
 import co.com.repositories.MatchTRepository;
+import co.com.repositories.UsuarioRepository;
+import java.util.ArrayList;
+import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Component
 public class MatchTController {
 
+         final Logger logger = LoggerFactory.getLogger(MatchTController.class);
+    
 	@Autowired
 	MatchTRepository matchtRepository;
 	
@@ -26,6 +35,9 @@ public class MatchTController {
 	
 	@Autowired
 	AutorRepository autorRepository;
+        
+        @Autowired
+        UsuarioRepository usuarioRepository;
 	
 	
 	public String solicitarMatch(MatchT matchInsert) {
@@ -39,21 +51,24 @@ public class MatchTController {
 		return "Hole";
 	}
 	
-	  public List<ArticulosMatch> buscarArticulosInicio() {
-	    	Autor autor = new Autor();
-	    	List<Articulo> articulosObj;
+	  public List<Articulo> buscarArticulosInicio() {
+	    	
+	    	List<Articulo> articulosObj = new ArrayList<>();
+                
 	    	articulosObj = articuloRepository.findAll();
-	    	List<ArticulosMatch> articulosAndAutor = new ArrayList<>();
-	    	ArticulosMatch articuloAndAutor = new ArticulosMatch();
-	    	Articulo articulo1 = new Articulo();
-		    for (Articulo ArticuloObj : articulosObj) {
-		    	articulo1 = articuloRepository.findById(ArticuloObj.getId());
-		    	autor = autorRepository.findById(articulo1.getAutor().getId());
-		    	articuloAndAutor.setArticulo(ArticuloObj);
-		    	articuloAndAutor.setAutor(autor);
-		    	articulosAndAutor.add(articuloAndAutor);
-			}
-	    	return articulosAndAutor;
+                
+		    for (Articulo articuloObj : articulosObj) {
+                            Optional<Usuario> usuario = null;
+                            Autor autor = new Autor();
+
+                            logger.debug(usuario.toString());
+                                autor.setNombre(usuario.get().getNombre());
+                                autor.setId(usuario.get().getId());
+                                autor.setDescripcion(usuario.get().getDescripcion());
+                           
+                            articuloObj.setAutor(autor);
+                }
+	    	return articulosObj ;
 	    }
 	  
 	  public List<Autor> obtenerPosiblesMatchAutores(Long idEditor) {

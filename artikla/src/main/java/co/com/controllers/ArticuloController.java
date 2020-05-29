@@ -10,6 +10,7 @@ import co.com.negocio.RolEnum;
 import co.com.repositories.ArticuloRepository;
 import java.util.Date;
 import java.util.List;
+import org.hibernate.Hibernate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -59,6 +60,19 @@ public class ArticuloController{
     	return true;
     }
        
-  
+    public List<Articulo> buscarArticulosInicio() {
+    	List<Articulo> articulosObj;
+    	articulosObj = articuloRepository.findAll();
+    	
+        for (Articulo articulo : articulosObj) {
+                Object unproxy = Hibernate.unproxy(articulo.getAutor());
+        }
+        
+    	//int cantArticulos = count(articulosObj);
+    	//for (int i = 0; i < articulosObj.length; i++) {
+			
+		//}
+    	return articulosObj;
+    }
    
 }

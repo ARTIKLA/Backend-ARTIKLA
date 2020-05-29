@@ -50,6 +50,6 @@ public class AutorService {
 	@RequestMapping(value = "/obtenerArticulosAutor", method= RequestMethod.POST)
 	public List<Articulo> obtenerArticulosAutor(@RequestBody Long id){
 		return autorController.traerArticulosXAutor(id);
-	}
+        }
 	
 }

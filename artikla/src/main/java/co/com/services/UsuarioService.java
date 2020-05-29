@@ -1,5 +1,7 @@
 package co.com.services;
 
+import co.com.controllers.UsuarioController;
+import co.com.entities.Articulo;
 import java.util.Optional;
 
 import org.apache.catalina.connector.Request;
@@ -21,6 +23,9 @@ public class UsuarioService {
 
 	@Autowired(required= true)
 	UsuarioRepository usuarioRepository;
+        
+        @Autowired(required = true)
+        UsuarioController usuarioController;
 	
 	@RequestMapping(value="/iniciarSesion", method= RequestMethod.POST)  
 	public Long obtenerUsuarioPorCorreoClave(@RequestBody Login login){
@@ -30,10 +35,22 @@ public class UsuarioService {
 	}
 	
 	@RequestMapping(value="/obtenerUsuarioPorId", method= RequestMethod.POST)  
-	public Optional<Usuario> obtenerUsuarioPorId(@RequestBody long id){
-		Optional<Usuario> user = usuarioRepository.findById(id);
+	public Usuario obtenerUsuarioPorId(@RequestBody long id){
+		Usuario user = usuarioRepository.findById(id);
 		return user;
 	} 
+        
+        
+        @RequestMapping(value="/actualizarUsuario")
+        public Usuario actualizarUsuarioById(@RequestBody Usuario usuario){
+            
+            Usuario usuarioActualizado = usuarioController.actualizarUsuario(usuario);
+            
+            return usuarioActualizado;
+            
+        }
+        
+
 	
 	
 }
