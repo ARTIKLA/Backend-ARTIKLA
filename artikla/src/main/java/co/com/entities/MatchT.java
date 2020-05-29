@@ -22,6 +22,20 @@ public class MatchT {
 	private Date fechaSolicitud;
 	private Date fechaAceptacion;
 	private long idArticulo;
+	private long usuario_solicitado;
+	private long usuario_solicitante;
+	public long getUsuario_solicitado() {
+		return usuario_solicitado;
+	}
+	public void setUsuario_solicitado(long usuario_solicitado) {
+		this.usuario_solicitado = usuario_solicitado;
+	}
+	public long getUsuario_solicitante() {
+		return usuario_solicitante;
+	}
+	public void setUsuario_solicitante(long usuario_solicitante) {
+		this.usuario_solicitante = usuario_solicitante;
+	}
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "chat_id", referencedColumnName = "id")
 	private Chat chat_id;

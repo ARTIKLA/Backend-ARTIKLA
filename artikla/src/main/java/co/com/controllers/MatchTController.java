@@ -52,6 +52,8 @@ public class MatchTController {
 		matchT.setId_articulo_match(matchInsert.getId_articulo_match());
 		matchT.setId_autor(matchInsert.getId_autor());
 		matchT.setId_editor(matchInsert.getId_editor());
+		matchT.setUsuario_solicitado(matchInsert.getUsuario_solicitado());
+		matchT.setUsuario_solicitante(matchInsert.getUsuario_solicitante());
 
 		return "Hole";
 	}
@@ -96,6 +98,8 @@ public class MatchTController {
 	}
 
 	public void crearMatchSuccess(long idMatch) {
+		int modoAutor =0;
+		int modoEditor=0;
 		MatchT matchDB = new MatchT();
 		matchDB =matchtRepository.findById(idMatch);
 		matchDB.setEstado(3);
@@ -105,7 +109,13 @@ public class MatchTController {
 		String correoEditor= editorRepository.findById(matchDB.getId_editor()).getCorreo();
 		String nombreAutor = autorRepository.findById(matchDB.getId_autor()).getNombre();
 		String nombreEditor= editorRepository.findById(matchDB.getId_editor()).getNombre();
-		correoController.sendEmail(correoAutor,nombreAutor);
-		correoController.sendEmail(correoEditor,nombreEditor);
+		//0 = solicitado . 1 = solicitante
+		if(matchDB.getUsuario_solicitado() == matchDB.getId_autor()) {
+			modoEditor = 1;
+		}else {
+			modoAutor = 1; 
+		}
+		correoController.sendEmail(correoAutor,nombreAutor,modoAutor);
+		correoController.sendEmail(correoEditor,nombreEditor,modoEditor);
 	}
 }
