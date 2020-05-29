@@ -1,5 +1,6 @@
 package co.com.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.OneToMany;
 public class Autor extends Usuario {
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="autor")
+        @JsonManagedReference
 	private List<Articulo> articulos;
 
 	public List<Articulo> getArticulos() {

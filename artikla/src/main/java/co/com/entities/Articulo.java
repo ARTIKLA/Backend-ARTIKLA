@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 
 @Entity
@@ -76,5 +78,5 @@ public class Articulo {
 	}
 	public void setAutor(Autor autor) {
 		this.autor = autor;
-	}
+	}        
 }

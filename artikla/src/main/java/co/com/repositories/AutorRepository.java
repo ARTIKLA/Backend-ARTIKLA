@@ -9,6 +9,8 @@ import co.com.entities.Autor;
 public interface AutorRepository extends CrudRepository<Autor, Long> {
 	
 
+        @Override
 	public List<Autor> findAll();
+        
 	public Autor findById(long id);
 }

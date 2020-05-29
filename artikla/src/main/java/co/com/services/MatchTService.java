@@ -30,8 +30,8 @@ public class MatchTService {
 	}
 	
 
-    @RequestMapping("/traerArticulos")
-    public List<ArticulosMatch> buscarArticulos(){
+        @RequestMapping("/traerArticulos")
+    public List<Articulo> buscarArticulos(){
         return matchtController.buscarArticulosInicio();
     	//return articuloController.buscarArticulosInicio();
     }

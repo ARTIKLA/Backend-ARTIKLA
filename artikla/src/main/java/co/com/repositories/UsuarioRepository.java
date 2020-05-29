@@ -9,6 +9,6 @@ import co.com.entities.Usuario;
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
 	public Usuario findByCorreoAndClave(String correo, String clave);
-
+        Usuario findById(long id);
 }
  
