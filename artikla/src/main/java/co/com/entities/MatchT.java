@@ -16,26 +16,15 @@ public class MatchT {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private long id_autor;
-	private long idEditor;
-	private int estado;
+	private Long id_autor;
+	private Long idEditor;
+	private Integer estado;
 	private Date fechaSolicitud;
 	private Date fechaAceptacion;
-	private long idArticulo;
-	private long usuario_solicitado;
-	private long usuario_solicitante;
-	public long getUsuario_solicitado() {
-		return usuario_solicitado;
-	}
-	public void setUsuario_solicitado(long usuario_solicitado) {
-		this.usuario_solicitado = usuario_solicitado;
-	}
-	public long getUsuario_solicitante() {
-		return usuario_solicitante;
-	}
-	public void setUsuario_solicitante(long usuario_solicitante) {
-		this.usuario_solicitante = usuario_solicitante;
-	}
+        private Date fechaRechazo;
+	private Long idArticulo;
+	private Long usuario_solicitado;
+	private Long usuario_solicitante;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "chat_id", referencedColumnName = "id")
 	private Chat chat_id;
@@ -58,36 +47,57 @@ public class MatchT {
 	public void setFechaAceptacion(Date fechaAceptacion) {
 		this.fechaAceptacion = fechaAceptacion;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public long getId_autor() {
+	public Long getId_autor() {
 		return id_autor;
 	}
-	public void setId_autor(long id_autor) {
+	public void setId_autor(Long id_autor) {
 		this.id_autor = id_autor;
 	}
-	public long getId_editor() {
+	public Long getId_editor() {
 		return idEditor;
 	}
-	public void setId_editor(long id_editor) {
+	public void setId_editor(Long id_editor) {
 		this.idEditor = id_editor;
 	}
-	public int getEstado() {
+	public Integer getEstado() {
 		return estado;
 	}
-	public void setEstado(int estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
-	public long getId_articulo_match() {
+	public Long getId_articulo_match() {
 		return idArticulo;
 	}
-	public void setId_articulo_match(long id_articulo_match) {
+	public void setId_articulo_match(Long id_articulo_match) {
 		this.idArticulo = id_articulo_match;
 	}
+        
+        public Long getUsuario_solicitado() {
+		return usuario_solicitado;
+	}
+	public void setUsuario_solicitado(Long usuario_solicitado) {
+		this.usuario_solicitado = usuario_solicitado;
+	}
+	public Long getUsuario_solicitante() {
+		return usuario_solicitante;
+	}
+	public void setUsuario_solicitante(Long usuario_solicitante) {
+		this.usuario_solicitante = usuario_solicitante;
+	}
 
+    public Date getFechaRechazo() {
+        return fechaRechazo;
+    }
+
+    public void setFechaRechazo(Date fechaRechazo) {
+        this.fechaRechazo = fechaRechazo;
+    }
+        
 	
 }

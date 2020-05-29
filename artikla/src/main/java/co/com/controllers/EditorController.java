@@ -5,7 +5,10 @@ import org.springframework.stereotype.Component;
 
 import co.com.entities.Autor;
 import co.com.entities.Editor;
+import co.com.entities.MatchT;
 import co.com.repositories.EditorRepository;
+import co.com.repositories.MatchTRepository;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -13,6 +16,9 @@ public class EditorController {
 
 	@Autowired
 	EditorRepository editorRepository;
+        
+        @Autowired
+        MatchTRepository matchTRepository;
 	
 	
 	public boolean insertarEditor(Editor editor) {
@@ -30,19 +36,22 @@ public class EditorController {
 		if(editorGuardado.getId() >= 0) return true;
 		return false;
 	}
-	public List<Editor> traerEditores(){
-		return  editorRepository.findAll();
-	}
-	public boolean modificarEditor(Editor editor) {
-		Editor editorDB = new Editor();
-		editorDB = editorRepository.findById(editor.getId());
-		editorDB.setClave(editor.getClave());
-		editorDB.setNombre(editor.getNombre());
-		editorDB.setDescripcion(editor.getDescripcion());
-		editorDB.setNombreRevista(editor.getNombreRevista());
-		editorDB.setDescripcionRevista(editor.getDescripcionRevista());
-		Editor editorModificado= editorRepository.save(editorDB);
-		if(editorModificado.getId() >= 0) return true;
-		return false;
-	}
+	public List<Editor> traerEditores(final Autor autor){
+		
+            List<Editor> allEditores = editorRepository.findAll();
+            List<Editor> allEditorSinSolicitud = new ArrayList<>();
+            
+            for (Editor editor : allEditores) {
+                MatchT matchDeAutor = matchTRepository.findAllById_autorAndIdEditor(autor.getId(), editor.getId());
+                if(matchDeAutor == null){
+                    allEditorSinSolicitud.add(editor);
+                }
+            }
+            
+            return allEditorSinSolicitud;
+	
+        
+        
+        }
+	
 }

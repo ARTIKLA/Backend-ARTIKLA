@@ -13,6 +13,12 @@ import co.com.entities.Articulo;
 import co.com.entities.ArticulosMatch;
 import co.com.entities.Autor;
 import co.com.entities.MatchT;
+import co.com.entities.RespWS;
+import co.com.entities.RespuestaWS;
+import co.com.entities.Usuario;
+import co.com.negocio.MatchDto;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class MatchTService {
 	
@@ -23,29 +29,65 @@ public class MatchTService {
 	CorreoController correoController;
 	
 	
-	@RequestMapping("/generarMatch")
-	public String crearMatch( @RequestBody MatchT matchInfo){
-		String resultado = matchtController.solicitarMatch(matchInfo);
-		return resultado;
-	}
+	@RequestMapping(value="/solicitarMatch", method= RequestMethod.POST) 
+	public RespWS crearMatch(@RequestBody MatchT match){
+           
+            RespWS res = null;
+            MatchT matchNuevo = matchtController.solicitarMatch(match);
 	
-
-        @RequestMapping("/traerArticulos")
+            return RespuestaWS.matchSolicitado;
+	}
+        
+        @RequestMapping(value="/descartarMatch", method= RequestMethod.POST) 
+	public RespWS descartarMatch(@RequestBody MatchT match){
+           
+            matchtController.descartarMatch(match);
+	
+            return RespuestaWS.matchDescartado;
+	}
+        
+   @RequestMapping("/traerArticulos")
     public List<Articulo> buscarArticulos(){
         return matchtController.buscarArticulosInicio();
-    	//return articuloController.buscarArticulosInicio();
     }
     
     
     @RequestMapping("/obtenerPosiblesMatchAutores")
     public List<Autor> obtenerPosiblesMatchAutores(@RequestBody Long idEditor){
         return matchtController.obtenerPosiblesMatchAutores(idEditor);
-    	//return articuloController.buscarArticulosInicio();
     }
+    
+        @RequestMapping("/obtenerMatchsSolicitados")
+    public List<MatchDto> obtenerMatchsSolicitados(@RequestBody Usuario usuarioSolicitante){
+        return matchtController.obtenerMatchSolicitados(usuarioSolicitante);
+    }
+    
+    @RequestMapping("/obtenerMatchRecibidos")
+    public List<MatchDto> obtenerMatchRecibidos(@RequestBody Usuario usuarioSolicitado){
+        return matchtController.obtenerMatchRecibidos(usuarioSolicitado);
+    }
+    
+    
+        @RequestMapping("/aceptarMatch")
+    public MatchT aceptarMatch(@RequestBody MatchDto match){
+        return matchtController.aceptarMatch(match);
+    }
+
+      @RequestMapping("/rechazarMatch")
+    public MatchT rechazarMatch(@RequestBody MatchDto match){
+        return matchtController.rechazarMatch(match);
+    }
+    
+     @RequestMapping("/obtenerMatchExitosos")
+    public List<MatchDto> obtenerMatchExitosos(@RequestBody Usuario usuario){
+        return matchtController.obtenerMatchExitosos(usuario);
+    }
+    
+    
 	
-    @RequestMapping("/crearRelacionMatch")
-    public void enviarCorreo(@RequestBody long idMatch){
-    	matchtController.crearMatchSuccess(idMatch);
-    	//return articuloController.buscarArticulosInicio();
-    }
+//    @RequestMapping("/crearRelacionMatch")
+//    public void enviarCorreo(@RequestBody long idMatch){
+//    	matchtController.crearMatchSuccess(idMatch);
+//    	//return articuloController.buscarArticulosInicio();
+//    }
 }

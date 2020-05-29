@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.controllers.EditorController;
+import co.com.entities.Autor;
 import co.com.entities.Editor;
 import co.com.entities.RespWS;
 import co.com.entities.RespuestaWS;
@@ -22,9 +23,10 @@ public class EditorService {
 	EditorController editorController;
 
 	@RequestMapping("/obtenerEditores")
-	public List<Editor> obtenerEditores(){
-		List<Editor> editor = editorController.traerEditores();
-		return editor;
+	public List<Editor> obtenerEditores(@RequestBody Autor autor){
+            List<Editor> editor = editorController.traerEditores(autor);
+            
+            return editor;
 	}
 
 	@RequestMapping("/crearEditor")
@@ -45,10 +47,10 @@ public class EditorService {
 		return editorRepository.findById(1); 
 	}
 
-	@RequestMapping("/editarEditor")
-	public boolean actualizarEditor(@RequestBody Editor editor){
-		boolean resultado = editorController.modificarEditor(editor);
-		return resultado;
-	}
+//	@RequestMapping("/editarEditor")
+//	public boolean actualizarEditor(@RequestBody Editor editor){
+//		boolean resultado = editorController.modificarEditor(editor);
+//		return resultado;
+//	}
 
 }
