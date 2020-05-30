@@ -21,6 +21,7 @@ import co.com.repositories.EditorRepository;
 import co.com.repositories.MatchTRepository;
 import co.com.repositories.UsuarioRepository;
 import java.util.Optional;
+import javax.mail.MessagingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -179,12 +180,18 @@ public class MatchTController {
           
           
           
-          public MatchT aceptarMatch(final MatchDto matchT){
+          public MatchT aceptarMatch(final MatchDto matchT) throws MessagingException{
               
               MatchT match = matchtRepository.findById(matchT.getMatch().getId()).get();
               
               match.setEstado(EstadoMatchEnum.ACEPTADA.getId());
+              
+              Usuario usuarioSolicitante = usuarioRepository.findById(matchT.getMatch().getUsuario_solicitante()).get();
+              Usuario usuarioSolicitado = usuarioRepository.findById(matchT.getMatch().getUsuario_solicitado()).get();
+              
               match.setFechaAceptacion(new Date());
+              	
+              correoController.sendEmail(usuarioSolicitante.getCorreo(),usuarioSolicitante.getNombre(), usuarioSolicitado.getNombre());
            
               
               return matchtRepository.save(match);
@@ -242,8 +249,7 @@ public class MatchTController {
                  
           
 	  public void enviarCorreo(){
-//	  	correoController.sendEmail(correoAutor,nombreAutor,modoAutor);
-//		correoController.sendEmail(correoEditor,nombreEditor,modoEditor);
+
 	}
 
 }

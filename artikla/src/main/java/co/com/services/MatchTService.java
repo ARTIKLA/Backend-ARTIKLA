@@ -17,6 +17,7 @@ import co.com.entities.RespWS;
 import co.com.entities.RespuestaWS;
 import co.com.entities.Usuario;
 import co.com.negocio.MatchDto;
+import javax.mail.MessagingException;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 @RestController
@@ -69,7 +70,7 @@ public class MatchTService {
     
     
         @RequestMapping("/aceptarMatch")
-    public MatchT aceptarMatch(@RequestBody MatchDto match){
+    public MatchT aceptarMatch(@RequestBody MatchDto match) throws MessagingException{
         return matchtController.aceptarMatch(match);
     }
 
@@ -85,9 +86,4 @@ public class MatchTService {
     
     
 	
-//    @RequestMapping("/crearRelacionMatch")
-//    public void enviarCorreo(@RequestBody long idMatch){
-//    	matchtController.crearMatchSuccess(idMatch);
-//    	//return articuloController.buscarArticulosInicio();
-//    }
 }
