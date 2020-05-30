@@ -44,9 +44,9 @@ public class ArticuloService  {
 	}
 
 	@RequestMapping("/eliminarArticulo")
-	public RespWS eliminarArticulo(@RequestBody Long id) {
+	public RespWS eliminarArticulo(@RequestBody Articulo articulo) {
 		try {
-			RespuestaWS.articuloEliminado.setSuccess(articuloController.eliminarArticulo(id));
+			RespuestaWS.articuloEliminado.setSuccess(articuloController.eliminarArticulo(articulo));
 			
 			if(RespuestaWS.articuloEliminado.getSuccess())
 				return RespuestaWS.articuloEliminado;

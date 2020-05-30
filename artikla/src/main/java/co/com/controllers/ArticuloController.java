@@ -55,8 +55,8 @@ public class ArticuloController{
         
     }
     
-    public boolean eliminarArticulo(Long id) {
-    	articuloRepository.deleteById(id);
+    public boolean eliminarArticulo(Articulo articulo) {
+    	articuloRepository.deleteById(articulo.getId());
     	return true;
     }
        
