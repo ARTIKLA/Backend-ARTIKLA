@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.repositories.ChatRepository;
 
 @RestController
-public class ChatController {
+public class ChatService {
 
 	@Autowired(required=true)
 	ChatRepository chatRepository;
